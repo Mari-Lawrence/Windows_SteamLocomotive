@@ -1,0 +1,3 @@
+gcc sl.c -o sl.exe -mconsole -O2 -Wall
+candle.exe sl.wxs
+light.exe -ext WixUIExtension -cc . -o SteamLocomotive.msi sl.wixobj

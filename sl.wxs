@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product
+    Id="c02b1585-2981-4f9c-90ee-ad759cbf067a"
+    Name="SteamLocomotive"
+    Language="1033"
+    Version="1.0.0.0"
+    Manufacturer="Gu Qirui"
+    UpgradeCode="1cc84ff2-56e6-4e99-ab43-92d6ec6f8953">
+
+    <!-- 打包到 MSI 文件中，安装到所有用户 -->
+    <Package InstallerVersion="500" Compressed="yes" InstallScope="perMachine" />
+
+    <!-- 自动处理版本升级 -->
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+
+    <!-- 自动嵌入 CAB -->
+    <Media Id="1" Cabinet="product.cab" EmbedCab="yes" />
+
+    <!-- 安装功能定义 -->
+    <Feature Id="MainFeature" Title="SteamLocomotive" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+    </Feature>
+
+    <!-- UI 设置：允许用户修改安装目录 -->
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER"/>
+    <UIRef Id="WixUI_InstallDir" />
+    <UIRef Id="WixUI_ErrorProgressText" />
+
+    <!-- 目录结构 -->
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="SteamLocomotive">
+          <Component Id="MainExecutable" Guid="b819c137-eda9-478a-abf3-e20aa1a680ea">
+            <File Source="sl.exe" KeyPath="yes" />
+          </Component>
+        </Directory>
+      </Directory>
+      <!-- 环境变量设置需要 SystemFolder -->
+      <Directory Id="SystemFolder" />
+    </Directory>
+
+    <!-- 组件定义 -->
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <ComponentRef Id="MainExecutable" />
+      <Component Id="AddToPath" Guid="a23c3aac-7758-44e2-9be0-d26e7ae1a869">
+        <Environment Id="AddPathEnv"
+                     Action="set"
+                     Name="PATH"
+                     Permanent="no"
+                     Part="last"
+                     System="yes"
+                     Value="[INSTALLFOLDER]" />
+        <RegistryValue Root="HKLM" Key="Software\SteamLocomotive" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+      </Component>
+    </ComponentGroup>
+
+  </Product>
+</Wix>
