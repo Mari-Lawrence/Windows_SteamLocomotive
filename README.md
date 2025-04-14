@@ -1,4 +1,4 @@
-SteamLocomotive - Windows 版 sl 命令
+#SteamLocomotive - Windows 版 sl 命令
 SteamLocomotive 是一个将 Linux 系统中的 sl（Steam Locomotive）命令移植到 Windows 平台的工具。sl 是一个非常有趣的命令，通常用于当你误打了 ls 时，显示一列火车动画。本项目的目的是让 Windows 用户也能体验到这个有趣的命令。
 
 项目简介
@@ -23,32 +23,6 @@ Linux 中的 sl 命令，通常作为一种调侃的工具，目的是在用户�
 选择安装目录（默认安装到 C:\Program Files\SteamLocomotive）。
 
 选择是否将 sl 添加到系统环境变量 PATH（默认会添加，方便全局使用）。
-
-3. 完成安装
-安装完成后，你就可以在任何命令行工具中使用 sl 命令了。只需在命令行中输入：
-
-bash
-复制
-编辑
-sl
-你将看到一个火车在终端中开过的动画。
-
-使用方法
-运行 sl 命令：在命令行中输入 sl，你将看到一个火车的动画效果。
-
-示例：
-
-bash
-复制
-编辑
-C:\> sl
-自定义火车动画：你可以使用不同的参数来控制动画的表现。例如：
-
-sl -a：展示 ASCII 火车动画。
-
-sl -l：显示大号的火车。
-
-你可以通过 sl --help 查看更多选项。
 
 贡献
 如果你希望贡献代码或改进此项目，请按照以下步骤进行：
